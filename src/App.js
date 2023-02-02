@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { useSelector } from "react-redux";
+import "./App.css";
+import { increaseCounter, resetCounter } from "./store/actions";
+import { rootStore } from "./store/store";
 
 function App() {
+  //REDUX: selectors filter the store state
+  //and retrieve only the data we need
+  const counter = useSelector((state) => state.counter);
+
+  //REDUX: in order to call actions, we need rootStore.dispatch() function
+  //remember: call it with an anonymous function () => rootStore.dispatch()
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h1 className="title">Redux counter!</h1>
+      <div className="body">
+        <p className="counter"> Counter counts up to {counter}!</p>
+      </div>
+      <button
+        className="button increase"
+        onClick={() => rootStore.dispatch(increaseCounter())}
+      >
+        ADD
+      </button>
+      <button
+        className="button reset"
+        onClick={() => rootStore.dispatch(resetCounter())}
+      >
+        RESET
+      </button>
     </div>
   );
 }

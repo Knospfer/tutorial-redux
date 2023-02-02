@@ -1,13 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
+import App from "./App";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
+import { rootStore } from "./store/store";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+//REDUX: we need PROVIDER component to inject redux store into the react app
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={rootStore}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 
